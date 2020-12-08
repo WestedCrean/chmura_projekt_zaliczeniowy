@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask import request
 
 from config import app_config
 
@@ -17,6 +18,18 @@ def create_app(config_name):
     @app.route('/')
     def hello_world():
         return 'Running, connected to database'
+    
+    @app.route('/users/<user_id>', methods = ['GET','DELETE'])
+    def single_user(user_id):
+
+    @app.route('/users', methods = ['GET', 'POST'])
+    def users():
+        if request.method == 'GET':
+
+        if request.method == 'POST':
+        
+   
+
 
     login_manager.init_app(app)
     login_manager.login_message = 'You must be logged in to access this page'

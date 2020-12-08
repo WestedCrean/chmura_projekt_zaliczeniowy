@@ -1,11 +1,9 @@
-version: "2.4"
-services:
+version: '3.7'
 
+services:
   flask:
     container_name: Aplikacja
-    build: .
-    links:
-      - mysql
+    image: catherinium/chmura_projekt_zaliczeniowy
     environment:
       FLASK_CONFIG: development
     ports:
@@ -13,10 +11,8 @@ services:
     depends_on:
       - mysql
     networks:
-      - bridge−zadanie−1
-        
+      - bridge_zadanie_1
     
-        
   mysql:
     container_name: Cloud2020-88682
     image: mysql:5.7
@@ -28,11 +24,12 @@ services:
       MYSQL_USER: w.flis
       MYSQL_PASSWORD: pass
     networks:
-      - bridge−zadanie−1
-
+      bridge_zadanie_1:
+        ipv4_address: 10.0.10.3
 
 networks:
-  bridge−zadanie−1:
+  bridge_zadanie_1:
+    name: Bridge_zadanie_1
     driver: bridge
     ipam:
       driver: default
