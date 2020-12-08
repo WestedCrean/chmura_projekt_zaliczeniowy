@@ -1,0 +1,41 @@
+version: "2.4"
+services:
+
+  flask:
+    container_name: Aplikacja
+    build: .
+    links:
+      - mysql
+    environment:
+      FLASK_CONFIG: development
+    ports:
+      - "8080:5000"
+    depends_on:
+      - mysql
+    networks:
+      - bridge−zadanie−1
+        
+    
+        
+  mysql:
+    container_name: Cloud2020-88682
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cloud2020
+      MYSQL_USER: w.flis
+      MYSQL_PASSWORD: pass
+    networks:
+      - bridge−zadanie−1
+
+
+networks:
+  bridge−zadanie−1:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.10.0/24
+          gateway: 10.0.10.1
